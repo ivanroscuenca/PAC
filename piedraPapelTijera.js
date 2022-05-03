@@ -1,42 +1,43 @@
 // Este array no se puede modificar,
 var posibilidades = ["piedra", "papel", "tijera"];
 //    //
+
+/*
 var piedra = posibilidades[0];
 var papel = posibilidades[1];
 var tijera = posibilidades[2];
+*/
 
 // Creamos un array de imagenes
-
 var listaImagenes = document.getElementsByTagName('img');
 
 //Creamos un array de botones
 var botones = document.getElementsByTagName("button");
 
 //function comprobacion nombre en input name=nombre
-
 function checkNombre() {
-    var nombre = document.getElementById("nombre").value;
-    const regex = /[^0-9][a-zA-Z]{4,}/;
+    var nombre = document.getElementsByName("nombre").value;
+    const regex1 = /[^0-9][a-zA-Z]{4,}/g;
 
-    if (!nombre.match(regex)) {
-        document.getElementById("nombre").classList.add("fondoRojo")
-        return false;
+    if (regex1.test(nombre)) {
+        return true;
     } else {
-        return true
+        document.getElementsByName("nombre").classList.add("fondoRojo");
+        return false
     }
 }
 
 //function comprobacion numero en input name=partidas
-function checkNumero() {
-    var partidas = document.getElementById("partidas").value;
-    const regex = /^[0-9]$/;
 
-    if (!partidas.match(regex)) {
-        document.getElementById("partidas").classList.add("fondoRojo")
-        return false;
-    } else {
-        total.innerHTML = partidas;
+function checkNumero() {
+    var partidas = document.getElementsByName("partidas").value;
+    //const regex2 = /^[0-9]$/g;
+    const regex2 = /\d/g;
+    if (regex2.test(partidas)) {
         return true;
+    } else {
+        document.getElementsByName("partidas").classList.add("fondoRojo");
+        return false
     }
 }
 
@@ -44,7 +45,7 @@ var checkNom = checkNombre();
 var checkNum = checkNumero();
 
 function checkDatos() {
-    if (checkNombre(true) && checkNumero(true)) {
+    if (checkNom(true) && checkNum(true)) {
         return true;
     } else {
         return false;
@@ -85,8 +86,8 @@ function ponerBorde(e) {
 
 //indico quien lanza los eventos
 
-ocument.getElementsByTagName("button")[0].addEventListener("click", checkDatos);
-ocument.getElementsByTagName("button")[0].addEventListener("click", cambiarImagenes);
+ocument.getElementsByTagName("button")[0].addEventListener("click", checkDatos, false);
+ocument.getElementsByTagName("button")[0].addEventListener("click", cambiarImagenes, false);
 
 document.getElementsByTagName("button")[1].addEventListener("click", jugar);
 document.getElementsByTagName("button")[2].addEventListener("click", reset);
