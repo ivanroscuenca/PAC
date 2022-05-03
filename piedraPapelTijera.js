@@ -1,12 +1,5 @@
 // Este array no se puede modificar,
 var posibilidades = ["piedra", "papel", "tijera"];
-//    //
-
-/*
-var piedra = posibilidades[0];
-var papel = posibilidades[1];
-var tijera = posibilidades[2];
-*/
 
 // Creamos un array de imagenes
 var listaImagenes = document.getElementsByTagName('img');
@@ -23,7 +16,7 @@ function checkNombre() {
         return true;
     } else {
         document.getElementsByName("nombre").classList.add("fondoRojo");
-        return false
+        return false;
     }
 }
 
@@ -39,7 +32,7 @@ function checkNumero() {
         return true;
     } else {
         document.getElementsByName("partidas").classList.add("fondoRojo");
-        return false
+        return false;
     }
 }
 
@@ -52,14 +45,18 @@ function checkDatos() {
         return false;
     }
 }
-
 //Cambiar los pinguinos en div id="jugador" por imagenes piedra papel tijera jugador
+/*
 function cambiarImagenes() {
 
-    document.getElementsById("jugador").classList.add("fondoRojo");
+    document.getElementsById("jugador").classList.hidden("img/defecto.png");
+    var img1 =document.getElementsById("jugador").classList.add("/img/piedraJugador.png");
+    var img2 =document.getElementsById("jugador").classList.add("/img/papelJugador.png");
+    var img3 =document.getElementsById("jugador").classList.add("/img/tijeraJugador.png");
+   
     listaImagenes
-
 }
+*/
 
 //function jugar(){}
 
@@ -77,10 +74,12 @@ function tiradaAleatoria(datos) {
 */
 
 function ponerBorde(e) {
-    e.target.classList.add("seleccionado");
+
     for (var j = 0; j < listaImagenes.length; j++) {
         if (listaImagenes[j] != e.target) {
             e.target.classList.add("no seleccionado");
+        } else {
+            e.target.classList.add("seleccionado");
         }
     }
 
@@ -91,9 +90,7 @@ function ponerBorde(e) {
 }
 
 //indico quien lanza los eventos
-
-ocument.getElementsByTagName("button")[0].addEventListener("click", checkDatos, false);
-ocument.getElementsByTagName("button")[0].addEventListener("click", cambiarImagenes, false);
-
-document.getElementsByTagName("button")[1].addEventListener("click", jugar);
-document.getElementsByTagName("button")[2].addEventListener("click", reset);
+botones[0].addEventListener("click", checkDatos, false);
+//botones[0].addEventListener("click", cambiarImagenes, false);
+//botones[1].addEventListener("click", jugar);
+//botones[2].addEventListener("click", reset);
