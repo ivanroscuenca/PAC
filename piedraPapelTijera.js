@@ -31,6 +31,8 @@ function checkNombre() {
 
 function checkNumero() {
     var partidas = document.getElementsByName("partidas").value;
+
+    partidas = parseInt(partidas);
     //const regex2 = /^[0-9]$/g;
     const regex2 = /\d/g;
     if (regex2.test(partidas)) {
@@ -41,10 +43,9 @@ function checkNumero() {
     }
 }
 
-var checkNom = checkNombre();
-var checkNum = checkNumero();
-
 function checkDatos() {
+    var checkNom = checkNombre();
+    var checkNum = checkNumero();
     if (checkNom(true) && checkNum(true)) {
         return true;
     } else {
@@ -52,7 +53,13 @@ function checkDatos() {
     }
 }
 
-//function cambiarImagenes(){}
+//Cambiar los pinguinos en div id="jugador" por imagenes piedra papel tijera jugador
+function cambiarImagenes() {
+
+    document.getElementsById("jugador").classList.add("fondoRojo");
+    listaImagenes
+
+}
 
 //function jugar(){}
 
@@ -73,8 +80,7 @@ function ponerBorde(e) {
     e.target.classList.add("seleccionado");
     for (var j = 0; j < listaImagenes.length; j++) {
         if (listaImagenes[j] != e.target) {
-            listaImagenes[j].style.border = "";
-            listaImagenes[j].style.opacity = "0.5";
+            e.target.classList.add("no seleccionado");
         }
     }
 
