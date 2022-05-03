@@ -16,28 +16,28 @@ var botones = document.getElementsByTagName("button");
 
 function checkNombre() {
     var nombre = document.getElementById("nombre").value;
-    const regex =
+    const regex = /[^0-9][a-zA-Z]{4,}/;
 
-        if (!nombre.match(regex)) {
-            document.getElementById("nombre").classList.add("fondoRojo")
-            return false;
-        } else {
-            return true
-        }
+    if (!nombre.match(regex)) {
+        document.getElementById("nombre").classList.add("fondoRojo")
+        return false;
+    } else {
+        return true
+    }
 }
 
 //function comprobacion numero en input name=partidas
 function checkNumero() {
     var partidas = document.getElementById("partidas").value;
-    const regex =
+    const regex = /^[0-9]$/;
 
-        if (!partidas.match(regex)) {
-            document.getElementById("partidas").classList.add("fondoRojo")
-            return false;
-        } else {
-            total.innerHTML = partidas;
-            return true;
-        }
+    if (!partidas.match(regex)) {
+        document.getElementById("partidas").classList.add("fondoRojo")
+        return false;
+    } else {
+        total.innerHTML = partidas;
+        return true;
+    }
 }
 
 var checkNom = checkNombre();
