@@ -11,6 +11,10 @@ var botones = document.getElementsByTagName("button");
 //Creamos una lista inputs
 var inputs = document.getElementsByTagName("input");
 
+var partidas;
+
+var partidasJugadas;
+
 //function comprobacion nombre en input name=nombre
 function checkNombre() {
     var nombre = inputs[0].value;
@@ -28,14 +32,16 @@ function checkNombre() {
 //function comprobacion numero en input name=partidas
 
 function checkNumero() {
-    var partidasJugadas = 0;
-    var partidas = inputs[1].value;
+    partidasJugadas = 0;
+    partidas = inputs[1].value;
     partidas = parseInt(partidas);
     const regex2 = /^[1-9]+[0-9]*$/g;
     if (regex2.test(partidas)) {
         inputs[1].classList.remove("fondoRojo");
-        actual.innerHTML = partidas;
-        total.innerHTML = partidas - partidasJugadas;
+
+        actual.innerHTML = partidasJugadas;
+        total.innerHTML = partidas;
+
         return true;
     } else {
         inputs[1].classList.add("fondoRojo");
@@ -73,22 +79,10 @@ function cambiarImagenes() {
     img3.removeAttribute('src');
     img3.setAttribute('src', 'img/tijeraJugador.png');
     img1 = posibilidades[2];
-    var listaImagenes = [img1, img2, img3];
+    var listaPosibilidades = [img1, img2, img3];
 
 }
-//function jugar(){}
 
-//function reset(){} 
-
-//function tirada(){}
-/*
-// Devuelve un valor aleatorio de entre todos los posibles.
-function tiradaAleatoria(datos) {
-	var numeroAleatorio = Math.floor(Math.random() * datos.length);
-	console.log(numeroAleatorio);
-	return datos[numeroAleatorio];
-}
-*/
 function ponerBorde(e) {
     cambiarImagenes();
 
@@ -106,7 +100,30 @@ for (var i = 0; i < listaImagenes.length; i++) {
     listaImagenes[i].addEventListener("click", ponerBorde, false);
 }
 
+// Devuelve un valor aleatorio de entre todos los posibles.
+function tiradaAleatoria() {
+
+    var listaPosibilidadesMaquina = ["img/piedraOrdenador.png", "img/papelOrdenador.png", "img/tijeraOrdenador.png"];
+    var numeroAleatorio = Math.floor(Math.random() * listaPosibilidadesMaquina.length);
+    var eleccionMaquina = listaPosibilidadesMaquina[numeroAleatorio];
+    var imgmaqui = document.getElementById("maquina").getElementsByTagName("img")[0];;
+    imgmaqui.removeAttribute('src');
+    imgmaqui.setAttribute('src', eleccionMaquina);
+
+    actual.innerHTML = ++partidasJugadas;
+    total.innerHTML = partidas;
+    /*  if (partidas == partidasJugadas) {
+tragaperras  vt7 ejemplo3
+	} else {
+    } */
+}
+
+
+//function CheckJuego(){}
+
+//function reset(){} 
+
 //indico quien lanza los eventos
 botones[0].addEventListener("click", checkDatos, false);
-//botones[1].addEventListener("click", jugar);
+botones[1].addEventListener("click", tiradaAleatoria, false);
 //botones[2].addEventListener("click", reset);
