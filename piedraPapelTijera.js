@@ -3,19 +3,23 @@ var posibilidades = ["piedra", "papel", "tijera"];
 
 // Creamos un array de imagenes
 var listaImagenes = document.getElementsByTagName('img');
+// const listaImagenes = document.querySelectorAll("img");
 
 //Creamos un array de botones
 var botones = document.getElementsByTagName("button");
 
+//Creamos una lista inputs
+var inputs = document.getElementsByTagName("input");
+
 //function comprobacion nombre en input name=nombre
 function checkNombre() {
-    var nombre = document.getElementsByName("nombre").value;
+    var nombre = inputs[0].value;
     const regex1 = /[^0-9][a-zA-Z]{4,}/g;
-
     if (regex1.test(nombre)) {
+        inputs[0].classList.remove("fondoRojo");
         return true;
     } else {
-        document.getElementsByName("nombre").classList.add("fondoRojo");
+        inputs[0].classList.add("fondoRojo");
         return false;
     }
 }
@@ -23,15 +27,14 @@ function checkNombre() {
 //function comprobacion numero en input name=partidas
 
 function checkNumero() {
-    var partidas = document.getElementsByName("partidas").value;
-
+    var partidas = inputs[1].value;
     partidas = parseInt(partidas);
-    //const regex2 = /^[0-9]$/g;
-    const regex2 = /\d/g;
+    const regex2 = /^[1-9]+[0-9]*$/g;
     if (regex2.test(partidas)) {
+        inputs[1].classList.remove("fondoRojo");
         return true;
     } else {
-        document.getElementsByName("partidas").classList.add("fondoRojo");
+        inputs[1].classList.add("fondoRojo");
         return false;
     }
 }
@@ -39,8 +42,10 @@ function checkNumero() {
 function checkDatos() {
     var checkNom = checkNombre();
     var checkNum = checkNumero();
-    if (checkNom(true) && checkNum(true)) {
+    if (checkNom && checkNum) {
         return true;
+
+        //cambiarImagenes();
     } else {
         return false;
     }
