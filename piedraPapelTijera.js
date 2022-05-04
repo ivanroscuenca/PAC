@@ -27,11 +27,14 @@ function checkNombre() {
 //function comprobacion numero en input name=partidas
 
 function checkNumero() {
+    var partidasJugadas = 0;
     var partidas = inputs[1].value;
     partidas = parseInt(partidas);
     const regex2 = /^[1-9]+[0-9]*$/g;
     if (regex2.test(partidas)) {
         inputs[1].classList.remove("fondoRojo");
+        actual.innerHTML = partidas;
+        total.innerHTML = partidas - partidasJugadas;
         return true;
     } else {
         inputs[1].classList.add("fondoRojo");
@@ -44,12 +47,12 @@ function checkDatos() {
     var checkNum = checkNumero();
     if (checkNom && checkNum) {
         return true;
-
         //cambiarImagenes();
     } else {
         return false;
     }
 }
+
 //Cambiar los pinguinos en div id="jugador" por imagenes piedra papel tijera jugador
 /*
 function cambiarImagenes() {
@@ -93,7 +96,6 @@ function ponerBorde(e) {
     }
 
 }
-
 //indico quien lanza los eventos
 botones[0].addEventListener("click", checkDatos, false);
 //botones[0].addEventListener("click", cambiarImagenes, false);
