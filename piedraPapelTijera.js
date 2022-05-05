@@ -2,8 +2,7 @@
 var posibilidades = ["piedra", "papel", "tijera"];
 
 // Creamos un array de imagenes
-//var listaImagenes = document.getElementsByTagName('img');
-const listaImagenes = document.querySelectorAll("img");
+var opcionjugador = document.querySelectorAll("img");
 
 //Creamos un array de botones
 var botones = document.getElementsByTagName("button");
@@ -11,11 +10,13 @@ var botones = document.getElementsByTagName("button");
 //Creamos una lista inputs
 var inputs = document.getElementsByTagName("input");
 
+//Creamos una variable de partidas
 var partidas;
-
+//Creamos una variable de partidas juagadas
 var partidasJugadas;
+//Creamos un hitorial de partidas
+var historialPartidas;
 
-var listaPosibilidadesMaquina;
 
 //function comprobacion nombre en input name=nombre
 function checkNombre() {
@@ -70,55 +71,85 @@ function cambiarImagenes() {
     var img1 = document.getElementById("jugador").getElementsByTagName("img")[0];;
     img1.removeAttribute('src');
     img1.setAttribute('src', 'img/piedraJugador.png');
-    img1 = posibilidades[0];
 
     var img2 = document.getElementById("jugador").getElementsByTagName("img")[1];
     img2.removeAttribute('src');
     img2.setAttribute('src', 'img/papelJugador.png');
-    img1 = posibilidades[1];
+
 
     var img3 = document.getElementById("jugador").getElementsByTagName("img")[2];
     img3.removeAttribute('src');
     img3.setAttribute('src', 'img/tijeraJugador.png');
-    img1 = posibilidades[2];
 
 }
 
 function ponerBorde(e) {
     cambiarImagenes();
 
-    listaImagenes[0].classList.replace("seleccionado", "noSeleccionado");
+    opcionjugador[0].classList.replace("seleccionado", "noSeleccionado");
 
-    for (var j = 0; j < listaImagenes.length; j++) {
-        if (listaImagenes[j] != e.target) {
-            listaImagenes[j].classList.replace("seleccionado", "noSeleccionado");
+    for (var j = 0; j < opcionjugador.length; j++) {
+        if (opcionjugador[j] != e.target) {
+            opcionjugador[j].classList.replace("seleccionado", "noSeleccionado");
         } else {
-            listaImagenes[j].classList.replace("noSeleccionado", "seleccionado");
+            opcionjugador[j].classList.replace("noSeleccionado", "seleccionado");
+
         }
     }
 }
-for (var i = 0; i < listaImagenes.length; i++) {
-    listaImagenes[i].addEventListener("click", ponerBorde, false);
+for (var i = 0; i < opcionjugador.length; i++) {
+    opcionjugador[i].addEventListener("click", ponerBorde, false);
 }
 
 // Devuelve un valor aleatorio de entre todos los posibles.
-function tiradaAleatoria(Event) {
+function tiradaAleatoria() {
 
     if (partidasJugadas < partidas) {
         var listaPosibilidadesMaquina = ["img/piedraOrdenador.png", "img/papelOrdenador.png", "img/tijeraOrdenador.png"];
-        var numeroAleatorio = Math.floor(Math.random() * listaPosibilidadesMaquina.length);
+        var numeroAleatorio = Math.floor(Math.random() * posibilidades.length);
         listaPosibilidadesMaquina[numeroAleatorio];
         var imgmaqui = document.getElementById("maquina").getElementsByTagName("img")[0];;
         imgmaqui.removeAttribute('src');
         imgmaqui.setAttribute('src', listaPosibilidadesMaquina[numeroAleatorio]);
-
         actual.innerHTML = ++partidasJugadas;
         total.innerHTML = partidas;
+        //CheckJuego();
     } else {
         alert("La partida terminó");
     }
 }
+/*
+function CheckJuego() {
 
+    if (opcionjugador[2] && listaPosibilidadesMaquina[1]) {
+        historialPartidas = "Jugador Gana<br>";
+        historial.innerHTML += historialPartidas;
+    }
+    if (opcionjugador[1] && listaPosibilidadesMaquina[0]) {
+        historialPartidas = "Jugador Gana<br>";
+        historial.innerHTML += historialPartidas;
+    }
+    if (opcionjugador[0] && listaPosibilidadesMaquina[2]) {
+        historialPartidas = "Jugador Gana<br>";
+        historial.innerHTML += historialPartidas;
+    }
+    if (opcionjugador[0] && listaPosibilidadesMaquina[1]) {
+        historialPartidas = "Maquina Gana<br>";
+        historial.innerHTML += historialPartidas;
+    }
+    if (opcionjugador[1] && listaPosibilidadesMaquina[2]) {
+        historialPartidas = "Maquina Gana<br>";
+        historial.innerHTML += historialPartidas;
+    }
+    if (opcionjugador[2] && listaPosibilidadesMaquina[0]) {
+        historialPartidas = "Maquina Gana<br>";
+        historial.innerHTML += historialPartidas;
+    } else {
+        historialPartidas = "Empate<br>";
+        historial.innerHTML += historialPartidas;
+    }
+}
+*/
 
 //function reset(){} 
 
