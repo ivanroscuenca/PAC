@@ -15,6 +15,8 @@ var partidas;
 
 var partidasJugadas;
 
+var listaPosibilidadesMaquina;
+
 //function comprobacion nombre en input name=nombre
 function checkNombre() {
     var nombre = inputs[0].value;
@@ -79,7 +81,6 @@ function cambiarImagenes() {
     img3.removeAttribute('src');
     img3.setAttribute('src', 'img/tijeraJugador.png');
     img1 = posibilidades[2];
-    var listaPosibilidades = [img1, img2, img3];
 
 }
 
@@ -101,25 +102,23 @@ for (var i = 0; i < listaImagenes.length; i++) {
 }
 
 // Devuelve un valor aleatorio de entre todos los posibles.
-function tiradaAleatoria() {
+function tiradaAleatoria(Event) {
 
-    var listaPosibilidadesMaquina = ["img/piedraOrdenador.png", "img/papelOrdenador.png", "img/tijeraOrdenador.png"];
-    var numeroAleatorio = Math.floor(Math.random() * listaPosibilidadesMaquina.length);
-    var eleccionMaquina = listaPosibilidadesMaquina[numeroAleatorio];
-    var imgmaqui = document.getElementById("maquina").getElementsByTagName("img")[0];;
-    imgmaqui.removeAttribute('src');
-    imgmaqui.setAttribute('src', eleccionMaquina);
+    if (partidasJugadas < partidas) {
+        var listaPosibilidadesMaquina = ["img/piedraOrdenador.png", "img/papelOrdenador.png", "img/tijeraOrdenador.png"];
+        var numeroAleatorio = Math.floor(Math.random() * listaPosibilidadesMaquina.length);
+        listaPosibilidadesMaquina[numeroAleatorio];
+        var imgmaqui = document.getElementById("maquina").getElementsByTagName("img")[0];;
+        imgmaqui.removeAttribute('src');
+        imgmaqui.setAttribute('src', listaPosibilidadesMaquina[numeroAleatorio]);
 
-    actual.innerHTML = ++partidasJugadas;
-    total.innerHTML = partidas;
-    /*  if (partidas == partidasJugadas) {
-tragaperras  vt7 ejemplo3
-	} else {
-    } */
+        actual.innerHTML = ++partidasJugadas;
+        total.innerHTML = partidas;
+    } else {
+        alert("La partida terminó");
+    }
 }
 
-
-//function CheckJuego(){}
 
 //function reset(){} 
 
