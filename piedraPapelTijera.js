@@ -18,6 +18,9 @@ var partidasJugadas;
 var historialPartidas;
 
 
+//variable opciones de la maquina
+var opcionMaquina;
+
 //function comprobacion nombre en input name=nombre
 function checkNombre() {
     var nombre = inputs[0].value;
@@ -93,7 +96,7 @@ function ponerBorde(e) {
             opcionjugador[j].classList.replace("seleccionado", "noSeleccionado");
         } else {
             opcionjugador[j].classList.replace("noSeleccionado", "seleccionado");
-
+            opcionjugador[j] = document.getElementById("seleccionado");
         }
     }
 }
@@ -105,12 +108,13 @@ for (var i = 0; i < opcionjugador.length; i++) {
 function tiradaAleatoria() {
 
     if (partidasJugadas < partidas) {
-        var listaPosibilidadesMaquina = ["img/piedraOrdenador.png", "img/papelOrdenador.png", "img/tijeraOrdenador.png"];
+        var listaMaquina = ["img/piedraOrdenador.png", "img/papelOrdenador.png", "img/tijeraOrdenador.png"];
         var numeroAleatorio = Math.floor(Math.random() * posibilidades.length);
-        listaPosibilidadesMaquina[numeroAleatorio];
+        listaMaquina[numeroAleatorio];
         var imgmaqui = document.getElementById("maquina").getElementsByTagName("img")[0];;
         imgmaqui.removeAttribute('src');
-        imgmaqui.setAttribute('src', listaPosibilidadesMaquina[numeroAleatorio]);
+        imgmaqui.setAttribute('src', listaMaquina[numeroAleatorio]);
+        opcionMaquina = listaMaquina[numeroAleatorio];
         actual.innerHTML = ++partidasJugadas;
         total.innerHTML = partidas;
         //CheckJuego();
@@ -118,42 +122,51 @@ function tiradaAleatoria() {
         alert("La partida terminó");
     }
 }
+
 /*
 function CheckJuego() {
 
-    if (opcionjugador[2] && listaPosibilidadesMaquina[1]) {
+    if (opcionjugador[2] && opcionMaquina[1]) {
         historialPartidas = "Jugador Gana<br>";
         historial.innerHTML += historialPartidas;
     }
-    if (opcionjugador[1] && listaPosibilidadesMaquina[0]) {
+    if (opcionjugador[1] && opcionMaquina[0]) {
         historialPartidas = "Jugador Gana<br>";
         historial.innerHTML += historialPartidas;
     }
-    if (opcionjugador[0] && listaPosibilidadesMaquina[2]) {
+    if (opcionjugador[0] && opcionMaquina[2]) {
         historialPartidas = "Jugador Gana<br>";
         historial.innerHTML += historialPartidas;
+
     }
-    if (opcionjugador[0] && listaPosibilidadesMaquina[1]) {
+    if (opcionjugador[0] && opcionMaquina[1]) {
         historialPartidas = "Maquina Gana<br>";
         historial.innerHTML += historialPartidas;
     }
-    if (opcionjugador[1] && listaPosibilidadesMaquina[2]) {
+    if (opcionjugador[1] && opcionMaquina[2]) {
         historialPartidas = "Maquina Gana<br>";
         historial.innerHTML += historialPartidas;
     }
-    if (opcionjugador[2] && listaPosibilidadesMaquina[0]) {
+    if (opcionjugador[2] && opcionMaquina[0]) {
         historialPartidas = "Maquina Gana<br>";
-        historial.innerHTML += historialPartidas;
+        historial.innerHTML += historialPartidas
     } else {
         historialPartidas = "Empate<br>";
         historial.innerHTML += historialPartidas;
     }
 }
-*/
 
-//function reset(){} 
+
+function reset() {
+    if (partidasJugadas == partidas) {
+        partidasJugadas = 0;
+        partidas = 0;
+        checkNumero();
+    }
+}
+*/
 
 //indico quien lanza los eventos
 botones[0].addEventListener("click", checkDatos, false);
 botones[1].addEventListener("click", tiradaAleatoria, false);
-//botones[2].addEventListener("click", reset);
+//botones[2].addEventListener("click", reset, false);
