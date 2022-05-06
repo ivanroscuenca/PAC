@@ -24,8 +24,8 @@ var opcionMaquina;
 //function comprobacion nombre en input name=nombre
 function checkNombre() {
     var nombre = inputs[0].value;
-    const regex1 = /[^0-9][a-zA-Z]{3,}/g;
-    //const regex1 = /[^\d{1}]{4,}/g;
+    const regex1 = /[^0-9][a-zA-Z0-9]{3,}/g;
+
     if (regex1.test(nombre)) {
         inputs[0].classList.remove("fondoRojo");
         return true;
@@ -47,7 +47,6 @@ function checkNumero() {
 
         actual.innerHTML = partidasJugadas;
         total.innerHTML = partidas;
-
         return true;
     } else {
         inputs[1].classList.add("fondoRojo");
@@ -61,7 +60,6 @@ function checkDatos() {
     if (checkNom && checkNum) {
         cambiarImagenes();
         return true;
-
     } else {
         return false;
     }
@@ -71,7 +69,7 @@ function checkDatos() {
 
 function cambiarImagenes() {
 
-    var img1 = document.getElementById("jugador").getElementsByTagName("img")[0];;
+    var img1 = document.getElementById("jugador").getElementsByTagName("img")[0];
     img1.removeAttribute('src');
     img1.setAttribute('src', 'img/piedraJugador.png');
 
@@ -168,5 +166,7 @@ function reset() {
 
 //indico quien lanza los eventos
 botones[0].addEventListener("click", checkDatos, false);
+
 botones[1].addEventListener("click", tiradaAleatoria, false);
+
 //botones[2].addEventListener("click", reset, false);
